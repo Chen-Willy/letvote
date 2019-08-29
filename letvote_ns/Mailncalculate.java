@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+﻿import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,7 +13,7 @@ public class Mailncalculate {
 
 }
 
-class ServerMain implements MutiBoardcast {
+class ServerMain implements MutiBoardcast {  //http://jimmu-jimmu.blogspot.com/2012/10/abstract-classinterface.html implements MutiBoardcast
 	private static int y = 0;
 	private static int n = 0;
 	private static ArrayList<Integer> count1 = new ArrayList<>();
@@ -24,30 +22,29 @@ class ServerMain implements MutiBoardcast {
 	public static int content;
 	static ArrayList<Socket> clients = new ArrayList<>();
 
-	public void start() {
+	public void start() {                                               //最開始起頭
 
 		ServerSocket serverSock = null;
 		Socket cSock = null;
 		try {
-			serverSock = new ServerSocket(8000);
+			serverSock = new ServerSocket(8001);
 			while (true) {
 				System.out.println("Server started...(Scatchy)");
 				cSock = serverSock.accept(); 
 				clients.add(cSock);
-				count1.add(0);
+				count1.add(0);                                          //不知道在幹嘛 @      
 				new Thread(new serverthread(cSock, this)).start();
 				System.out.println("client connect...");
 			}
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (IOException err1) {
+			err1.printStackTrace();
 		}
 	}
 
 	@Override
 	public void sendProblem(String problem) {
 		PrintStream writer;
-		System.out.println(clients.size());
+		System.out.println(clients.size());                              //名單
 		for (int i = 0; i < clients.size(); i++) {
 			try {
 				writer = new PrintStream(clients.get(i).getOutputStream(), true);
@@ -56,7 +53,7 @@ class ServerMain implements MutiBoardcast {
 				writer.println(0);
 				writer.println(0);
 				System.out.println("problem send");
-			} catch (IOException e) { // �ǦW��
+			} catch (IOException e) { 
 				e.printStackTrace();
 			}
 		}
@@ -108,5 +105,8 @@ class ServerMain implements MutiBoardcast {
 			}
 		}
 	}
+
+}
+
 
 }
