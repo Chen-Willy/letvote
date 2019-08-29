@@ -36,8 +36,8 @@ class ServerMain implements MutiBoardcast {  //http://jimmu-jimmu.blogspot.com/2
 				new Thread(new serverthread(cSock, this)).start();
 				System.out.println("client connect...");
 			}
-		} catch (IOException err1) {
-			err1.printStackTrace();
+		} catch (IOException err) {
+			err.printStackTrace();
 		}
 	}
 
@@ -53,8 +53,8 @@ class ServerMain implements MutiBoardcast {  //http://jimmu-jimmu.blogspot.com/2
 				writer.println(0);
 				writer.println(0);
 				System.out.println("problem send");
-			} catch (IOException e) { 
-				e.printStackTrace();
+			} catch (IOException err) { 
+				err.printStackTrace();
 			}
 		}
 	}
@@ -99,14 +99,11 @@ class ServerMain implements MutiBoardcast {  //http://jimmu-jimmu.blogspot.com/2
 				writer.println("vote");
 				writer.println(y + "");
 				writer.println(n + "");
-			} catch (IOException e) {
+			} catch (IOException err) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				err.printStackTrace();
 			}
 		}
 	}
-
-}
-
 
 }
