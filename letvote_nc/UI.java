@@ -18,6 +18,11 @@ public class UI extends JFrame implements ActionListener {
 	Socket cSock;
 	ClientReceiveThread clientReceiveThread;
 
+	final int UNCHOOSE = 0;
+	final int CHOOSE_YES = 1;
+	final int CHOOSE_NO = 2;
+	int option = UNCHOOSE;
+
 	public static void main(String[] args) {
 		UI ui = new UI();
 	}
@@ -94,7 +99,7 @@ public class UI extends JFrame implements ActionListener {
 
 		try {
 
-			cSock = new Socket("127.0.0.1", 8000);
+			cSock = new Socket("127.0.0.1", 8001);
 			clientReceiveThread = new ClientReceiveThread(labelProblem, labelCountQ1, labelCountQ2, RadioButtonQ1,
 					RadioButtonQ2, cSock);
 			System.out.println(cSock);
@@ -106,6 +111,7 @@ public class UI extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		
 		PrintStream writer;
 		try {
 			writer = new PrintStream(cSock.getOutputStream(), true);
@@ -124,13 +130,20 @@ public class UI extends JFrame implements ActionListener {
 				labelCountQ2.setVisible(true);
 			}
 			if (event.getActionCommand().equals("yes")) {
-				writer.println("vote");
-				writer.println("1");
-				System.out.println("yes");
+				if(option == UNCHOOSE || option == CHOOSE_NO){
+					writer.println("vote");
+					writer.println("1");
+					System.out.println("yes");
+					option = CHOOSE_YES;
+				}
 			} 
 			else if (event.getActionCommand().equals("no")) {
-				writer.println("vote");
-				writer.println("0");
+				if(option == UNCHOOSE || option == CHOOSE_YES){
+					writer.println("vote");
+					writer.println("0");
+					System.out.println("no");
+					option = CHOOSE_NO;
+				}
 			}
 		} catch (Exception error) {
 			error.printStackTrace();

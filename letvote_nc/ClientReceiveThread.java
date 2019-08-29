@@ -1,10 +1,6 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
-
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
+import javax.swing.*;
+import java.io.*;
 
 public class ClientReceiveThread implements Runnable {
 	JLabel labelProblem, labelCountQ1, labelCountQ2;
