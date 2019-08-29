@@ -104,8 +104,8 @@ public class UI extends JFrame implements ActionListener {
 					RadioButtonQ2, cSock);
 			System.out.println(cSock);
 			new Thread(clientReceiveThread).start();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException error) {
+			error.printStackTrace();
 		}
 	}
 
