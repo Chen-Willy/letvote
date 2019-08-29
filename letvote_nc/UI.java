@@ -1,26 +1,7 @@
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.Socket;
-import java.util.Scanner;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.io.*;
+import java.awt.event.*;
 
 public class UI extends JFrame implements ActionListener {
 	int count = 0;
@@ -124,11 +105,11 @@ public class UI extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent event) {
 		PrintStream writer;
 		try {
 			writer = new PrintStream(cSock.getOutputStream(), true);
-			if (e.getActionCommand().equals("continue")) {
+			if (event.getActionCommand().equals("continue")) {
 				
 				System.out.println("continue");
 				writer.println("problem");
@@ -142,16 +123,17 @@ public class UI extends JFrame implements ActionListener {
 				labelCountQ1.setVisible(true);
 				labelCountQ2.setVisible(true);
 			}
-			if (e.getActionCommand().equals("yes")) {
+			if (event.getActionCommand().equals("yes")) {
 				writer.println("vote");
 				writer.println("1");
 				System.out.println("yes");
-			} else if (e.getActionCommand().equals("no")) {
+			} 
+			else if (event.getActionCommand().equals("no")) {
 				writer.println("vote");
 				writer.println("0");
 			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception error) {
+			error.printStackTrace();
 		}
 	}
 }

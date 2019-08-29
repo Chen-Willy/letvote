@@ -61,7 +61,6 @@ public class ClientReceiveThread implements Runnable {
 					labelCountQ2.setText(countQ2Content);
 				}
 			} catch (IOException error) {
-				// TODO Auto-generated catch block
 				error.printStackTrace();
 			}
 		}
