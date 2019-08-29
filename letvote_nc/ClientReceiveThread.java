@@ -31,18 +31,18 @@ public class ClientReceiveThread implements Runnable {
 				content = clientInput.readLine();
 				System.out.println("00000: "+content);
 				if (content.equals("problem")) {
-					String content1, content2, content3;
+					String problemContent, countQ1Content, countQ2Content;
 					System.out.println("test0");
 					System.out.println("test00");
-					content1 = clientInput.readLine();
+					problemContent = clientInput.readLine();
 					System.out.println("test1");
-					content2 = clientInput.readLine();
+					countQ1Content = clientInput.readLine();
 					System.out.println("test2");
-					content3 = clientInput.readLine();
+					countQ2Content = clientInput.readLine();
 					System.out.println("111111");
-					labelProblem.setText(content1);
-					labelCountQ1.setText(content2);
-					labelCountQ2.setText(content3);
+					labelProblem.setText(problemContent);
+					labelCountQ1.setText(countQ1Content);
+					labelCountQ2.setText(countQ2Content);
 					
 					labelProblem.setVisible(true);
 					RadioButtonQ1.setVisible(true);
@@ -50,19 +50,19 @@ public class ClientReceiveThread implements Runnable {
 					labelCountQ1.setVisible(true);
 					labelCountQ2.setVisible(true);
 				} else if (content.equals("vote")) {
-					String content1, content2;
-					content1 = clientInput.readLine();
+					String countQ1Content, countQ2Content;
+					countQ1Content = clientInput.readLine();
 					System.out.println("22222");
-					content2 = clientInput.readLine();
+					countQ2Content = clientInput.readLine();
 					System.out.println("33333");
-					System.out.println(content1);
-					System.out.println(content2);
-					labelCountQ1.setText(content1);
-					labelCountQ2.setText(content2);
+					System.out.println(countQ1Content);
+					System.out.println(countQ2Content);
+					labelCountQ1.setText(countQ1Content);
+					labelCountQ2.setText(countQ2Content);
 				}
-			} catch (IOException e) {
+			} catch (IOException error) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				error.printStackTrace();
 			}
 		}
 		

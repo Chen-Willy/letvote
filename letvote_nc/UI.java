@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class UI extends JFrame implements ActionListener {
-	int count =0;
+	int count = 0;
 
 	JButton btn;
 	JLabel label;
