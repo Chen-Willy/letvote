@@ -4,6 +4,7 @@ import java.io.*;
 import java.awt.event.*;
 
 public class UI extends JFrame implements ActionListener {
+	//宣告
 	int count = 0;
 
 	JButton btn;
@@ -27,7 +28,7 @@ public class UI extends JFrame implements ActionListener {
 		UI ui = new UI();
 	}
 
-	public UI() {
+	public UI() {//ui介面生成
 		setSize(375, 812);
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -97,7 +98,7 @@ public class UI extends JFrame implements ActionListener {
 		add(panel2);
 		setVisible(true);
 
-		try {
+		try {//接收資料
 
 			cSock = new Socket("127.0.0.1", 8001);
 			clientReceiveThread = new ClientReceiveThread(labelProblem, labelCountQ1, labelCountQ2, RadioButtonQ1,
@@ -113,7 +114,7 @@ public class UI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		
 		PrintStream writer;
-		try {
+		try {//更新介面
 			writer = new PrintStream(cSock.getOutputStream(), true);
 			if (event.getActionCommand().equals("continue")) {
 				
@@ -129,7 +130,7 @@ public class UI extends JFrame implements ActionListener {
 				labelCountQ1.setVisible(true);
 				labelCountQ2.setVisible(true);
 			}
-			if (event.getActionCommand().equals("yes")) {
+			if (event.getActionCommand().equals("yes")) {//偵測滑鼠
 				if(option == UNCHOOSE || option == CHOOSE_NO){
 					writer.println("vote");
 					writer.println("1");

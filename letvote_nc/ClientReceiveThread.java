@@ -2,7 +2,7 @@ import java.net.Socket;
 import javax.swing.*;
 import java.io.*;
 
-public class ClientReceiveThread implements Runnable {
+public class ClientReceiveThread implements Runnable {//宣告
 	JLabel labelProblem, labelCountQ1, labelCountQ2;
 	JRadioButton RadioButtonQ1, RadioButtonQ2;
 	Socket cSock;
@@ -18,7 +18,7 @@ public class ClientReceiveThread implements Runnable {
 		this.cSock = socket;
 	}
 
-	public void run() {
+	public void run() {//接收資料(thread)
 		BufferedReader clientInput;
 		String content;
 		while(true) {
